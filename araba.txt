@@ -1,0 +1,35 @@
+package araba;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class araba extends JApplet{
+
+	public void init()
+	{
+		this.isBackgroundSet();
+		this.setBackground(Color.white);
+	}
+	public void paint(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.drawLine(60, 60, 60, 100);//arac onu
+		g.drawLine(60, 60, 120, 60);//on kaput
+		g.drawLine(120, 60, 160, 30);//on cam
+		g.drawLine(160, 30, 300, 30);//tavan
+		g.drawLine(300, 30, 340, 60);//arka cam
+		g.drawLine(340, 60, 400, 60);//arka kaput
+		g.drawLine(400, 60, 400, 100);//arac arka
+		g.drawLine(120, 60, 120, 100);//on camur
+		g.drawLine(340, 60, 340, 100);//arka camur
+		g.drawLine(120, 60, 400, 60);//cam alti
+		g.drawLine(230, 30, 230, 100);//cam direk
+		g.drawLine(60, 100, 400, 100);//arac alt
+		g.fillOval(100, 80, 40, 40);//tekerlekon
+		g.fillOval(320, 80, 40, 40);//tekerlekarka
+		g.drawLine(200, 70, 220, 70);//onkapikolu
+		g.drawLine(310, 70, 330, 70);//arkakapikolu
+		
+		
+	}
+}

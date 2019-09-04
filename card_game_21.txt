@@ -1,0 +1,104 @@
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Calendar; 
+
+public class odevcardgame {
+  static Calendar cal = Calendar.getInstance();
+  static Random r = new Random(cal.getTimeInMillis());
+  static Scanner s = new Scanner(System.in);
+
+  public static void main(String args[])
+  {
+    ArrayList<Integer> cards = drawTwo();     
+    System.out.println("Çektiðiniz kartlar " + cards.get(0) + " ve " + cards.get(1) + " Kartlarýn deðeri: " + cardsTotal(cards));
+   
+    if(cardsTotal(cards) == 21)
+    {
+      System.out.println("Tebrikler, 21'e ulaþtýnýz!");
+      return;
+    }
+
+    System.out.println("Baþka bir kart çekmek için 1'e, kalmak için 2'ye basýn.");
+    playCards(cards);
+  }
+  public static void playCards(ArrayList<Integer> cards)
+  {
+    int choice = getChoice();
+
+    if(choice == 1)
+    {
+      int newCard = drawCard();
+      cards.add(newCard);
+      System.out.println("Çektiðiniz kart " + newCard + ".");
+      if(cardsTotal(cards) == 21)
+      {
+        System.out.println("Tebrikler, 21'e ulaþtýnýz!");
+        return;
+      }
+      else if(cardsTotal(cards) > 21)
+      {
+        System.out.println("Fazla puanýnýz var.");
+        return;
+      }
+      else {
+        System.out.println("Mevcut kartlarýnýzýn deðeri: " + cardsTotal(cards) + " 1 ya da 2'ye basýn");
+        playCards(cards);
+      }
+    }
+    else {
+      System.out.println("Final skorunuz: " + cardsTotal(cards));
+      return;
+    }
+  }
+  public static int drawCard()
+  {
+    int card = r.nextInt(13) + 1;
+    if( card == 1)
+    {
+      card = 11;
+    }
+    else if( card > 10)
+    {
+      card = 10;
+    }
+    return card;
+  }
+  public static ArrayList<Integer> drawTwo()
+  {
+    ArrayList<Integer> cards = new ArrayList<Integer>();
+    for(int i = 0; i < 2; i++)
+    {
+      cards.add(drawCard());
+    }
+    return cards;
+  }
+
+  public static int cardsTotal(ArrayList<Integer> cards)
+  {
+    int total = 0;
+    for(int card :cards)
+    {
+      total += card;
+    }
+    return total;
+  }
+
+  public static int getChoice()
+  {
+    int choice = 0;
+    while(choice != 1 && choice != 2)
+    {
+      String next = s.next();
+      try{
+        choice = Integer.parseInt(next);
+      }
+      catch(Exception e)
+      {
+        System.out.println("Geçerli deðil");
+      }
+    }
+    return choice;
+  }
+
+}
